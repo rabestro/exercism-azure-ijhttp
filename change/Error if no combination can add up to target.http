@@ -1,0 +1,22 @@
+### Error if no combination can add up to target
+# This test case checks if the API correctly returns an error when no combination of available coins can add up to the target.
+# The available coins are 5 and 10 cents. The target is 94 cents. The expected result is an error message.
+
+POST {{host}}/api/change HTTP/1.1
+Content-Type: application/json
+
+{
+  "coins": [
+    5,
+    10
+  ],
+  "target": 94
+}
+
+> {%
+    client.test("Error if no combination can add up to target", function () {
+        client.assert(response.status === 400, "Response status is not 400");
+        let body = response.body;
+        client.assert(body.error === "can't make target with given coins", "Error message is incorrect");
+    })
+%}

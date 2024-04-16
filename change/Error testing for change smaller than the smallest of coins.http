@@ -1,0 +1,22 @@
+### Error testing for change smaller than the smallest of coins
+# This test case checks if the API correctly returns an error when the target is smaller than the smallest available coin.
+# The available coins are 5 and 10 cents. The target is 3 cents. The expected result is an error message.
+
+POST {{host}}/api/change HTTP/1.1
+Content-Type: application/json
+
+{
+  "coins": [
+    5,
+    10
+  ],
+  "target": 3
+}
+
+> {%
+    client.test("Error testing for change smaller than the smallest of coins", function () {
+        client.assert(response.status === 400, "Response status is not 400");
+        let body = response.body;
+        client.assert(body.error === "can't make target with given coins", "Error message is incorrect");
+    })
+%}

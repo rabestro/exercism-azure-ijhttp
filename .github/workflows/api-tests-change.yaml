@@ -1,0 +1,32 @@
+# This workflow runs the API tests for the bruno application on the latest version of Ubuntu
+
+name: API Tests - Change
+
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+  checks: write
+jobs:
+  run_change_api_test:
+    name: API Tests - Change
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download ijhttp
+        run: curl -f -s -L -o ijhttp.zip https://jb.gg/ijhttp/latest
+      - name: Unpack ijhttp
+        run: unzip -nq ijhttp.zip
+      - name: Remove ijhttp.zip
+        run: rm ijhttp.zip
+      - name: Run API tests
+        run: ijhttp/ijhttp --env azure --env-file http-client.env.json change/*.http --report
+
+      - name: Publish Test Report
+        uses: dorny/test-reporter@v1
+        if: success() || failure()          # run this step even if previous step failed
+        with:
+          name: Change API Tests             # Name of the check run which will be created
+          path: reports/report.xml                  # Path to test results
+          reporter: java-junit              # Format of test results

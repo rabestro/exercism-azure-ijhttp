@@ -1,0 +1,32 @@
+### Large target values
+# This test case checks if the API correctly returns the fewest number of coins for a target of 999 cents.
+# The available coins are 1, 2, 5, 10, 20, 50, and 100 cents. The expected result is two 2 cent coins, one 5 cent coin, two 20 cent coins, one 50 cent coin, and seven 100 cent coins.
+
+POST {{host}}/api/change HTTP/1.1
+Content-Type: application/json
+
+{
+  "coins": [
+    1,
+    2,
+    5,
+    10,
+    20,
+    50,
+    100
+  ],
+  "target": 999
+}
+
+> {%
+    client.test("Large target values", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+        let body = response.body;
+        client.assert(body.fewestCoins.length === 15, "Number of coins is not 15");
+        client.assert(body.fewestCoins.filter(coin => coin === 2).length === 2, "The coins do not include two 2 cent coins");
+        client.assert(body.fewestCoins.filter(coin => coin === 5).length === 1, "The coins do not include one 5 cent coin");
+        client.assert(body.fewestCoins.filter(coin => coin === 20).length === 2, "The coins do not include two 20 cent coins");
+        client.assert(body.fewestCoins.filter(coin => coin === 50).length === 1, "The coins do not include one 50 cent coin");
+        client.assert(body.fewestCoins.filter(coin => coin === 100).length === 9, "The coins do not include nine 100 cent coins");
+    })
+%}

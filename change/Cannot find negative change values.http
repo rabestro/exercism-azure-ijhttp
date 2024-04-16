@@ -1,0 +1,23 @@
+### Cannot find negative change values
+# This test case checks if the API correctly returns an error when the target is a negative value.
+# The available coins are 1, 2, and 5 cents. The target is -5 cents. The expected result is an error message.
+
+POST {{host}}/api/change HTTP/1.1
+Content-Type: application/json
+
+{
+  "coins": [
+    1,
+    2,
+    5
+  ],
+  "target": -5
+}
+
+> {%
+    client.test("Cannot find negative change values", function () {
+        client.assert(response.status === 400, "Response status is not 400");
+        let body = response.body;
+        client.assert(body.error === "Negative change not allowed", "Error message is incorrect");
+    })
+%}

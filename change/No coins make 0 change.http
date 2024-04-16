@@ -1,0 +1,25 @@
+### No coins make 0 change
+# This test case checks if the API correctly returns the fewest number of coins for a target of 0 cents.
+# The available coins are 1, 5, 10, 21, and 25 cents. The expected result is an empty array.
+
+POST {{host}}/api/change HTTP/1.1
+Content-Type: application/json
+
+{
+  "coins": [
+    1,
+    5,
+    10,
+    21,
+    25
+  ],
+  "target": 0
+}
+
+> {%
+    client.test("No coins make 0 change", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+        let body = response.body;
+        client.assert(body.fewestCoins.length === 0, "Number of coins is not 0");
+    })
+%}

@@ -1,0 +1,25 @@
+### Another possible change without unit coins available
+# This test case checks if the API correctly returns the fewest number of coins for a target of 27 cents.
+# The available coins are 4 and 5 cents. The expected result is three 4 cent coins and three 5 cent coins.
+
+POST {{host}}/api/change HTTP/1.1
+Content-Type: application/json
+
+{
+  "coins": [
+    4,
+    5
+  ],
+  "target": 27
+}
+
+> {%
+    client.test("Another possible change without unit coins available", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+        let body = response.body;
+        client.assert(body.fewestCoins.length === 6, "Number of coins is not 6");
+        client.assert(body.fewestCoins.filter(coin => coin === 4).length === 3, "The coins do not include three 4 cent coins");
+        client.assert(body.fewestCoins.filter(coin => coin === 5).length === 3, "The coins do not include three 5 cent coins");
+    })
+%}
+
