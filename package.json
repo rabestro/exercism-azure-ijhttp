@@ -2,7 +2,6 @@
   "name": "exercism-azure-ijhttp",
   "version": "1.0.0",
   "description": "API test samples",
-  "main": "index.js",
   "scripts": {
     "test": "httpyac change/*.http --all --env azure --no-color --junit > report.xml"
   },
@@ -10,7 +9,6 @@
   "author": "Jegors Čemisovs",
   "license": "ISC",
   "dependencies": {
-    "httpyac": "^6.12.1",
-    "node-fetch": "^2.6.6"
+    "httpyac": "^6.12.1"
   }
 }
