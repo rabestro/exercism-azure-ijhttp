@@ -53,7 +53,7 @@ npm run test
 
 ![Visual Code](assets/httpyac-greedy.png)
 
-## httpYac Asserts
+## httpYac Simple Assertions
 
 ```bash
 npm run httpyac
@@ -65,8 +65,9 @@ npm run httpyac
 
 Two GitHub Actions have been added to the repository to run the tests:
 
-- api-tests-httpyac.yaml
 - api-tests-ijhttp.yaml
+- api-tests-httpyac.yaml
+- api-tests-assertions.yaml
 
 These actions can be run manually whenever needed.
 
