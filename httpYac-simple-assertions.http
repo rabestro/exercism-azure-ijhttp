@@ -1,3 +1,8 @@
+#
+# This test uses httpYac Simple Assertions
+#
+# See: https://httpyac.github.io/guide/assert.html
+#
 ### Change for 1 cent
 POST /api/change
 content-type: application/json
