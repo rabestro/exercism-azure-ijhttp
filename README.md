@@ -39,14 +39,20 @@ To run the tests, you can use either JetBrains HTTP Client or httpYac. Both clie
 
 The tests can be run directly from JetBrains Idea Ultimate or by installing CLI. Instructions for installing and using the CLI can be found here: https://www.jetbrains.com/help/idea/http-client-cli.html
 
+![IntelliJ IDEA Ultimate](assests/ijhttp-greedy.png)
+
 ## httpYac
 
-To run the tests with httpYac, use the following commands:
+The tests can be run directly from Visual Code or by CLI.
+To run the tests, use the following commands:
 
 ```bash
 npm install
 npm run test
 ```
+
+![Visual Code](assests/httpyac-greedy.png)
+
 
 ## GitHub Actions
 

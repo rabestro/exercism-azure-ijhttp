@@ -17,8 +17,11 @@ Content-Type: application/json
 > {%
     client.test("A greedy approach is not optimal", function () {
         client.assert(response.status === 200, "Response status is not 200");
-        let body = response.body;
-        client.assert(body.fewestCoins.length === 2, "Number of coins is not 2");
-        client.assert(body.fewestCoins.filter(coin => coin === 10).length === 2, "The coins do not include two 10 cent coins");
-    })
+        const { fewestCoins } = response.body;
+        const expectedCoinsCount = 2;
+        const expectedCentValue  = 10;
+        client.assert(fewestCoins.length === expectedCoinsCount, "Number of coins is not 2");
+        const actualCentCount = fewestCoins.filter(coin => coin === expectedCentValue).length;
+        client.assert(actualCentCount === expectedCoinsCount, "The coins do not include two 10 cent coins");
+    });
 %}
