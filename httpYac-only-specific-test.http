@@ -1,0 +1,181 @@
+### Change for 1 cent
+POST /api/change HTTP/1.1
+content-type: application/json
+
+{
+  "coins": [1, 5, 10, 25],
+  "target": 1
+}
+
+?? status == 200
+?? header content-type includes json
+?? body fewestCoins exists
+?? body fewestCoins == [1]
+
+### Single coin change
+POST /api/change HTTP/1.1
+content-type: application/json
+
+{
+  "coins": [1, 5, 10, 25, 100],
+  "target": 25
+}
+
+?? status == 200
+?? header content-type includes json
+?? body fewestCoins exists
+?? body fewestCoins == [25]
+
+### Multiple coin change
+POST /api/change HTTP/1.1
+content-type: application/json
+
+{
+  "coins": [1, 5, 10, 25, 100],
+  "target": 15
+}
+
+?? status == 200
+?? header content-type includes json
+?? body fewestCoins exists
+?? body fewestCoins == [5, 10]
+
+### Change with Lilliputian Coins
+POST /api/change HTTP/1.1
+content-type: application/json
+
+{
+  "coins": [1, 4, 15, 20, 50],
+  "target": 23
+}
+
+?? status == 200
+?? header content-type includes json
+?? body fewestCoins exists
+?? body fewestCoins == [4, 4, 15]
+
+### Change with Lower Elbonia Coins
+POST /api/change HTTP/1.1
+content-type: application/json
+
+{
+  "coins": [1, 5, 10, 21, 25],
+  "target": 63
+}
+
+?? status == 200
+?? header content-type includes json
+?? body fewestCoins exists
+?? body fewestCoins == [21, 21, 21]
+
+### Large target values
+POST /api/change HTTP/1.1
+content-type: application/json
+
+{
+  "coins": [1, 2, 5, 10, 20, 50, 100],
+  "target": 999
+}
+
+?? status == 200
+?? header content-type includes json
+?? body fewestCoins exists
+?? body fewestCoins == [2, 2, 5, 20, 20, 50, 100, 100, 100, 100, 100, 100, 100, 100, 100]
+
+### Possible change without unit coins available
+POST /api/change HTTP/1.1
+content-type: application/json
+
+{
+  "coins": [2, 5, 10, 20, 50],
+  "target": 21
+}
+
+?? status == 200
+?? header content-type includes json
+?? body fewestCoins exists
+?? body fewestCoins == [2, 2, 2, 5, 10]
+
+### Another possible change without unit coins available
+POST /api/change HTTP/1.1
+content-type: application/json
+
+{
+  "coins": [4, 5],
+  "target": 27
+}
+
+?? status == 200
+?? header content-type includes json
+?? body fewestCoins exists
+?? body fewestCoins == [4, 4, 4, 5, 5, 5]
+
+### A greedy approach is not optimal
+POST /api/change HTTP/1.1
+content-type: application/json
+
+{
+  "coins": [1, 10, 11],
+  "target": 20
+}
+
+?? status == 200
+?? header content-type includes json
+?? body fewestCoins exists
+?? body fewestCoins == [10, 10]
+
+### No coins make 0 change
+POST /api/change HTTP/1.1
+content-type: application/json
+
+{
+  "coins": [1, 5, 10, 21, 25],
+  "target": 0
+}
+
+?? status == 200
+?? header content-type includes json
+?? body fewestCoins exists
+?? body fewestCoins == []
+
+### Error testing for change smaller than the smallest of coins
+POST /api/change HTTP/1.1
+content-type: application/json
+
+{
+  "coins": [5, 10],
+  "target": 3
+}
+
+?? status == 400
+?? header content-type includes json
+?? body error exists
+?? body error == can't make target with given coins
+
+### Error if no combination can add up to target
+POST /api/change HTTP/1.1
+content-type: application/json
+
+{
+  "coins": [5, 10],
+  "target": 94
+}
+
+?? status == 400
+?? header content-type includes json
+?? body error exists
+?? body error == can't make target with given coins
+
+### Cannot find negative change values
+POST /api/change HTTP/1.1
+content-type: application/json
+
+{
+  "coins": [1, 2, 5],
+  "target": -5
+}
+
+?? status == 400
+?? header content-type includes json
+?? body error exists
+?? body error == Negative change not allowed

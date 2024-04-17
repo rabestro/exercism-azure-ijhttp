@@ -53,6 +53,13 @@ npm run test
 
 ![Visual Code](assets/httpyac-greedy.png)
 
+## httpYac Asserts
+
+```bash
+npm run httpyac
+```
+
+![Advanced Tests](assets/httpyac-only.png)
 
 ## GitHub Actions
 

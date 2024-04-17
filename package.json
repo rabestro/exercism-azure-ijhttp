@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "API test samples",
   "scripts": {
-    "test": "httpyac change/*.http --all --env azure --no-color --junit > report.xml"
+    "test": "httpyac change/*.http --all --env azure --no-color --junit > report.xml",
+    "httpyac": "httpyac httpYac-only-specific-test.http --all --env azure --output short"
   },
   "keywords": [],
   "author": "Jegors Čemisovs",
