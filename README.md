@@ -59,9 +59,13 @@ npm run test
 npm run httpyac
 ```
 
-### Intellij Community
+### IntelliJ IDEA Community
 
 ![Advanced Tests](assets/httpyac-idea-community.png)
+
+### IntelliJ IDEA Ultimate
+
+![Simple Assertions](assets/httpyac-idea-ultimate.png)
 
 ### Visual Code
 
