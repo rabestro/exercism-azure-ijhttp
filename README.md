@@ -59,7 +59,13 @@ npm run test
 npm run httpyac
 ```
 
-![Advanced Tests](assets/httpyac-only.png)
+### Intellij Community
+
+![Advanced Tests](assets/httpyac-idea-community.png)
+
+### Visual Code
+
+![Simple Assertions](assets/httpyac-vscode-assertions.png)
 
 ## GitHub Actions
 
