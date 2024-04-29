@@ -4,7 +4,7 @@
   "description": "API test samples",
   "scripts": {
     "test": "httpyac change/*.http --all --env azure --no-color --junit > report.xml",
-    "httpyac": "httpyac httpYac-simple-assertions.http --all --env azure --output short"
+    "httpyac": "httpyac httpYac-simple-assertions.http --all --env azure --no-color --junit > report.xml"
   },
   "keywords": [],
   "author": "Jegors Čemisovs",
