@@ -23,7 +23,7 @@ jobs:
         uses: dorny/test-reporter@v1
         if: success() || failure()
         with:
-          name: httpYac API Tests
+          name: httpYac API Tests (Report dorny)
           path: report.xml
           reporter: java-junit
 
@@ -31,5 +31,5 @@ jobs:
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
         with:
-          check_name: API Tests by httpYac
+          check_name: httpYac API Tests (Report EnricoMi)
           junit_files: report.xml
