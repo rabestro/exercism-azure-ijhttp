@@ -5,7 +5,7 @@
 #
 ### Change for 1 cent
 POST /api/change
-content-type: application/json
+Content-Type: application/json
 
 {
   "coins": [1, 5, 10, 25],
@@ -19,7 +19,7 @@ content-type: application/json
 
 ### Single coin change
 POST /api/change
-content-type: application/json
+Content-Type: application/json
 
 {
   "coins": [1, 5, 10, 25, 100],
@@ -33,7 +33,7 @@ content-type: application/json
 
 ### Multiple coin change
 POST /api/change
-content-type: application/json
+Content-Type: application/json
 
 {
   "coins": [1, 5, 10, 25, 100],
@@ -47,7 +47,7 @@ content-type: application/json
 
 ### Change with Lilliputian Coins
 POST /api/change
-content-type: application/json
+Content-Type: application/json
 
 {
   "coins": [1, 4, 15, 20, 50],
@@ -61,7 +61,7 @@ content-type: application/json
 
 ### Change with Lower Elbonia Coins
 POST /api/change
-content-type: application/json
+Content-Type: application/json
 
 {
   "coins": [1, 5, 10, 21, 25],
@@ -75,7 +75,7 @@ content-type: application/json
 
 ### Large target values
 POST /api/change
-content-type: application/json
+Content-Type: application/json
 
 {
   "coins": [1, 2, 5, 10, 20, 50, 100],
@@ -89,7 +89,7 @@ content-type: application/json
 
 ### Possible change without unit coins available
 POST /api/change
-content-type: application/json
+Content-Type: application/json
 
 {
   "coins": [2, 5, 10, 20, 50],
@@ -103,7 +103,7 @@ content-type: application/json
 
 ### Another possible change without unit coins available
 POST /api/change
-content-type: application/json
+Content-Type: application/json
 
 {
   "coins": [4, 5],
@@ -117,7 +117,7 @@ content-type: application/json
 
 ### A greedy approach is not optimal
 POST /api/change
-content-type: application/json
+Content-Type: application/json
 
 {
   "coins": [1, 10, 11],
@@ -131,7 +131,7 @@ content-type: application/json
 
 ### No coins make 0 change
 POST /api/change
-content-type: application/json
+Content-Type: application/json
 
 {
   "coins": [1, 5, 10, 21, 25],
@@ -145,7 +145,7 @@ content-type: application/json
 
 ### Error testing for change smaller than the smallest of coins
 POST /api/change
-content-type: application/json
+Content-Type: application/json
 
 {
   "coins": [5, 10],
@@ -159,7 +159,7 @@ content-type: application/json
 
 ### Error if no combination can add up to target
 POST /api/change
-content-type: application/json
+Content-Type: application/json
 
 {
   "coins": [5, 10],
@@ -173,7 +173,7 @@ content-type: application/json
 
 ### Cannot find negative change values
 POST /api/change
-content-type: application/json
+Content-Type: application/json
 
 {
   "coins": [1, 2, 5],
