@@ -10,6 +10,6 @@
   "author": "Jegors Čemisovs",
   "license": "ISC",
   "dependencies": {
-    "httpyac": "^6.13.1"
+    "httpyac": "^6.16.4"
   }
 }
